@@ -17,6 +17,12 @@ const Handleincrement=()=>{
   dispatch(addTodo(state2));
 
 }
+
+const handleChange=(event)=>{
+
+  setState(event.target.value);
+
+}
   //useSelector
   //useDispatch Hook
 
@@ -24,6 +30,8 @@ const Handleincrement=()=>{
     <div className="App">
 
       <h1>{state.def}</h1>
+
+      <input type="text" onChange={handleChange}/>
 
       <button onClick={Handleincrement}>
 
@@ -33,7 +41,7 @@ const Handleincrement=()=>{
 
       {
         state.values.map((ele,i)=>(
-          <li key={i}>{ele.name}</li>
+          <li key={i}>{ele}</li>
         ))
       }
     
