@@ -5,6 +5,9 @@ import './index.css'
 import {store} from "./store";
 import { Provider } from 'react-redux'
 
+// Provide is a bridge component that connects your react Application
+// with your redux store
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
   <App />
