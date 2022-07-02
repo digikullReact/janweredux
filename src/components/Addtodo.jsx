@@ -6,8 +6,23 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import { DataGrid } from '@mui/x-data-grid';
-import { addTodo } from '../slices/todo';
+import { addTodo,deleteTodo } from '../slices/todo';
 import uuid from 'react-uuid'
+
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 
 import { useDispatch,useSelector } from 'react-redux';
@@ -32,6 +47,11 @@ const Addtodo = () => {
 
 
   const rows=useSelector(state=>state.todoSlice.todos);
+  const [open, setOpen] = useState(false);
+  const handleOpen = (row) => {
+    setOpen(true);
+  }
+  const handleClose = () => setOpen(false);
 
 
   
@@ -54,6 +74,11 @@ const Addtodo = () => {
   }
 
 
+  const clickDelete=(id)=>{
+ dispatch(deleteTodo(id));
+
+  }
+
     const columns = [
         { field: 'id', headerName: 'ID', width: 270 },
         { field: 'task', headerName: 'Task', width: 130 },
@@ -65,7 +90,15 @@ const Addtodo = () => {
          Delete
           </Button>
   
-        },width: 230}
+        },width: 130},
+
+        {field:'edit' ,headerName:'Edit', renderCell:(params)=>{
+     
+          return <Button variant="contained" onClick={()=>handleOpen(params.row)}>
+           Edit
+          </Button>
+  
+        },width: 130}
       ];
 
 
@@ -136,6 +169,25 @@ const Addtodo = () => {
      
     </Box>
 
+
+{/**Modal for Edit Purpose */}
+
+<div>
+     
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+        <TextField name="task" id="outlined-basic" label="Todo" variant="outlined" onChange={handleChange}/> <br/>
+
+<Button  style={{marginTop:"20px"}} variant="contained" onClick={handleClick}>Edit Item</Button>
+      
+        </Box>
+      </Modal>
+    </div>
 
 
 

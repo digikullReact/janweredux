@@ -28,12 +28,20 @@ addTodo:(state,action)=>{
 }
 ,// Create a action that deletes todo from the array and call it from frontend
 
+deleteTodo:(state,action)=>{
+
+    state.todos=state.todos.filter(ele=>ele.id!=action.payload);
+
+},
+
+// Create an action  for editing 
+
     }
 
 
 
 })
 
-export const {addTodo} = todoSlice.actions;  // these are called by the frontend 
+export const {addTodo,deleteTodo} = todoSlice.actions;  // these are called by the frontend 
 
 export default todoSlice.reducer;  // reducer is more of in state management
