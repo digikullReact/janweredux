@@ -40,7 +40,11 @@ deleteTodo:(state,action)=>{
 
 editTodo:(state,action)=>{
 
+ 
     // Apply some logic of editing 
+
+    state.todos=state.todos.filter(ele=>ele.id!=action.payload.id);
+    state.todos.push(action.payload);
 
 }
 
@@ -50,6 +54,6 @@ editTodo:(state,action)=>{
 
 })
 
-export const {addTodo,deleteTodo} = todoSlice.actions;  // these are called by the frontend 
+export const {addTodo,deleteTodo,editTodo} = todoSlice.actions;  // these are called by the frontend 
 
 export default todoSlice.reducer;  // reducer is more of in state management

@@ -6,7 +6,7 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import { DataGrid } from '@mui/x-data-grid';
-import { addTodo,deleteTodo } from '../slices/todo';
+import { addTodo,deleteTodo,editTodo } from '../slices/todo';
 import uuid from 'react-uuid'
 
 import Typography from '@mui/material/Typography';
@@ -78,6 +78,13 @@ const Addtodo = () => {
 
    setState({...state,[event.target.name]:event.target.value,id:uuid()});
 
+
+  }
+
+  const handleEditClick=()=>{
+
+    dispatch(editTodo(editData));
+    setOpen(false);
 
   }
 
@@ -195,7 +202,7 @@ const Addtodo = () => {
         <Box sx={style}>
         <TextField name="task" onChange={handleEditChange} value={editData.task} id="outlined-basic" label="Todo" variant="outlined" /> <br/>
 
-<Button  style={{marginTop:"20px"}} variant="contained" onClick={handleClick}>Edit Item</Button>
+<Button  style={{marginTop:"20px"}} variant="contained" onClick={handleEditClick}>Edit Item</Button>
       
         </Box>
       </Modal>
