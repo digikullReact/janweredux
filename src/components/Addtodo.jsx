@@ -48,7 +48,15 @@ const Addtodo = () => {
 
   const rows=useSelector(state=>state.todoSlice.todos);
   const [open, setOpen] = useState(false);
+  const [editData,setEditData]=useState({
+    id:"",
+    task:""
+
+  })
   const handleOpen = (row) => {
+
+    setEditData(row);
+
     setOpen(true);
   }
   const handleClose = () => setOpen(false);
@@ -76,6 +84,10 @@ const Addtodo = () => {
 
   const clickDelete=(id)=>{
  dispatch(deleteTodo(id));
+
+  }
+  const handleEditChange=(event)=>{
+    setEditData({...editData,task:event.target.value});
 
   }
 
@@ -181,7 +193,7 @@ const Addtodo = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-        <TextField name="task" id="outlined-basic" label="Todo" variant="outlined" onChange={handleChange}/> <br/>
+        <TextField name="task" onChange={handleEditChange} value={editData.task} id="outlined-basic" label="Todo" variant="outlined" /> <br/>
 
 <Button  style={{marginTop:"20px"}} variant="contained" onClick={handleClick}>Edit Item</Button>
       

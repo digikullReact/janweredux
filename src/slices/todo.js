@@ -35,6 +35,14 @@ deleteTodo:(state,action)=>{
 },
 
 // Create an action  for editing 
+// Populate the input field in frontend 
+
+
+editTodo:(state,action)=>{
+
+    // Apply some logic of editing 
+
+}
 
     }
 
