@@ -4,6 +4,8 @@ import React ,{useEffect,useState} from 'react'
 import { styled } from '@mui/material/styles';
 import { useSelector,useDispatch } from 'react-redux';
 import { fetchBooks } from '../thunks';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -19,6 +21,8 @@ const Books = () => {
     const rows=useSelector(state=>state.todoSlice.books);
 
     const [state,setState]=useState();
+
+    const [showLoader,setshowloader]=useState(false);
     const dispatch=useDispatch();
 
     const handleChange=(event)=>{
@@ -28,7 +32,11 @@ const Books = () => {
     }
 
     const handleClick=()=>{
-        dispatch(fetchBooks(state));  //you can pass any input value to it --??
+        setshowloader(true);
+        dispatch(fetchBooks(state)).then(res=>{
+
+            setshowloader(false);
+        })  //you can pass any input value to it --??
 
     }
 
@@ -59,6 +67,7 @@ const Books = () => {
       ];
   return (
     <div>
+    
         <input type={"text"}  onChange={handleChange}/>
 
         <button onClick={handleClick}>
@@ -78,12 +87,21 @@ const Books = () => {
       rowsPerPageOptions={[5]}
       checkboxSelection
     />
+
+    {
+        showLoader?<Box sx={{ display: 'flex'  ,marginLeft:"600px"}}>
+        <CircularProgress />
+      </Box>:""
+    }
+
+
   </div>
 
-      
+
 
 
         </Item>
+        
       </Grid>
     </div>
   )
