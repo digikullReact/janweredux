@@ -8,6 +8,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import Products from './components/Products';
 
 function App() {
 
@@ -19,6 +20,8 @@ function App() {
 
 <Routes>
       <Route path="/" element={<Addtodo />}/>
+
+      <Route path="/products" element={<Products />}/>
        
        </Routes>
 

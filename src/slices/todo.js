@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { fetchProducts } from "../thunks";
 
 
 const initialState={
     todos:[],
+    products:[]
     
 }
 
@@ -48,7 +50,20 @@ editTodo:(state,action)=>{
 
 }
 
-    }
+    },
+
+    // these are responsible for the data managment with async apis
+
+    extraReducers: (builder) => {
+        // Add reducers for additional action types here, and handle loading state as needed
+        builder.addCase(fetchProducts.fulfilled, (state, action) => {
+
+          //  debugger;
+            // in this action you will be getting the data from an api  instead
+          // Add user to the state array
+          state.products=action.payload.data
+        })
+      },
 
 
 
