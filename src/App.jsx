@@ -9,6 +9,7 @@ import {
   Route,
 } from "react-router-dom";
 import Products from './components/Products';
+import Books from './components/Books';
 
 function App() {
 
@@ -22,6 +23,8 @@ function App() {
       <Route path="/" element={<Addtodo />}/>
 
       <Route path="/products" element={<Products />}/>
+
+      <Route path="/books" element={<Books />}/>
        
        </Routes>
 

@@ -4,7 +4,8 @@ import { fetchBooks, fetchProducts } from "../thunks";
 
 const initialState={
     todos:[],
-    products:[]
+    products:[],
+    books:[]
     
 }
 
@@ -65,10 +66,11 @@ editTodo:(state,action)=>{
         }),
         builder.addCase(fetchBooks.fulfilled, (state, action) => {
 
+
             //  debugger;
               // in this action you will be getting the data from an api  instead
             // Add user to the state array
-            state.products=action.payload.products
+            state.books=action.payload.data.items
           })
       },
 

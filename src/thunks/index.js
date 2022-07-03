@@ -17,9 +17,10 @@ export const fetchProducts = createAsyncThunk(
 
   export const fetchBooks = createAsyncThunk(
     'todo/fetchBooks',
-    async () => {
+    async (payload) => {
+      
        // An async function return a promise
-        const data=await axios.get("https://fakestoreapi.com/products");
+        const data=await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${payload}`);
         return data;
       
     }
