@@ -1,6 +1,6 @@
 import { Grid, Paper } from '@mui/material'
 import { DataGrid } from '@mui/x-data-grid'
-import React ,{useEffect} from 'react'
+import React ,{useEffect,useState} from 'react'
 import { styled } from '@mui/material/styles';
 import { useSelector,useDispatch } from 'react-redux';
 import { fetchBooks } from '../thunks';
@@ -17,7 +17,20 @@ const Item = styled(Paper)(({ theme }) => ({
 const Books = () => {
 
     const rows=useSelector(state=>state.todoSlice.books);
+
+    const [state,setState]=useState();
     const dispatch=useDispatch();
+
+    const handleChange=(event)=>{
+
+        setState(event.target.value);
+
+    }
+
+    const handleClick=()=>{
+        dispatch(fetchBooks(state));  //you can pass any input value to it --??
+
+    }
 
     useEffect(()=>{
         dispatch(fetchBooks("Premchand"));  //you can pass any input value to it --??
@@ -46,6 +59,12 @@ const Books = () => {
       ];
   return (
     <div>
+        <input type={"text"}  onChange={handleChange}/>
+
+        <button onClick={handleClick}>
+            Fetch books
+
+        </button>
 
 <Grid item xs={6}>
         
