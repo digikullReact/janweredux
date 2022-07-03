@@ -27,6 +27,19 @@ const Books = () => {
     const columns = [
         { field: 'id', headerName: 'ID', width: 270 },
         { field: 'etag', headerName: 'Etag', width: 130 },
+
+        { field: 'image', headerName: 'Image', width: 130, height:530,
+
+        renderCell:(params)=>{
+        
+
+            return <img width={"230"} height={230} src={params?.row?.volumeInfo?.imageLinks?.smallThumbnail}/>
+
+        }
+    
+    
+    
+    },
     
    
       
