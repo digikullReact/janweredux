@@ -14,3 +14,13 @@ export const fetchProducts = createAsyncThunk(
       
     }
   )
+
+  export const fetchBooks = createAsyncThunk(
+    'todo/fetchBooks',
+    async () => {
+       // An async function return a promise
+        const data=await axios.get("https://fakestoreapi.com/products");
+        return data;
+      
+    }
+  )

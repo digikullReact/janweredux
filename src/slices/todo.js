@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchProducts } from "../thunks";
+import { fetchBooks, fetchProducts } from "../thunks";
 
 
 const initialState={
@@ -61,8 +61,15 @@ editTodo:(state,action)=>{
           //  debugger;
             // in this action you will be getting the data from an api  instead
           // Add user to the state array
-          state.products=action.payload.data
-        })
+          state.products=action.payload.products
+        }),
+        builder.addCase(fetchBooks.fulfilled, (state, action) => {
+
+            //  debugger;
+              // in this action you will be getting the data from an api  instead
+            // Add user to the state array
+            state.products=action.payload.products
+          })
       },
 
 
