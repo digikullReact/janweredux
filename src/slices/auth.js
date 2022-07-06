@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { signupAction } from '../thunks/auth'
 
 // gives you access to action and reducer at same place
 
@@ -24,6 +25,17 @@ export const authSlice = createSlice({
       state.value += action.payload
     },
   },
+  extraReducers:(builder)=>{
+
+    builder.addCase(signupAction.fulfilled, (state, action) => {
+
+      //  debugger;
+        // in this action you will be getting the data from an api  instead
+      // Add user to the state array
+      state.products=action.payload.products
+    })
+
+  }
 })
 
 // Action creators are generated for each case reducer function

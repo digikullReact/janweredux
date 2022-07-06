@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import Products from './components/Products';
 import Books from './components/Books';
+import Signup from './components/Signup';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
       <Route path="/products" element={<Products />}/>
 
       <Route path="/books" element={<Books />}/>
+      <Route path="/signup" element={<Signup />}/>
        
        </Routes>
 
