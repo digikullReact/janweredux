@@ -11,6 +11,8 @@ import {
 import Products from './components/Products';
 import Books from './components/Books';
 import Signup from './components/Signup';
+import Login from './components/Login';
+import Usereducer from './components/Usereducer';
 
 function App() {
 
@@ -27,6 +29,10 @@ function App() {
 
       <Route path="/books" element={<Books />}/>
       <Route path="/signup" element={<Signup />}/>
+
+      <Route path="/login" element={<Login />}/>
+
+      <Route path="/reducer" element={<Usereducer />}/>
        
        </Routes>
 

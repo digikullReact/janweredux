@@ -14,3 +14,15 @@ export const signupAction = createAsyncThunk(
       
     }
   )
+
+  export const loginAction = createAsyncThunk(
+    'auth/loginAction',
+    async (payload) => {
+
+    
+       // An async function return a promise
+        const data=await axios.post("https://dry-gorge-90450.herokuapp.com/auth/login",payload);
+        return data;
+      
+    }
+  )
