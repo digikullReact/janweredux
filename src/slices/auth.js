@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { loginAction, signupAction } from '../thunks/auth'
+import { dataAction, loginAction, signupAction } from '../thunks/auth'
 
 // gives you access to action and reducer at same place
 
 const initialState = {
   something: 0,
+  data:[],
 }
 
 export const authSlice = createSlice({
@@ -40,6 +41,16 @@ export const authSlice = createSlice({
       //  debugger;
         // in this action you will be getting the data from an api  instead
       // Add user to the state array
+     
+    }),
+    builder.addCase(dataAction.fulfilled, (state, action) => {
+
+
+      //  debugger;
+        // in this action you will be getting the data from an api  instead
+      // Add user to the state array
+
+      state.data=action.payload.data.data;
      
     })
 

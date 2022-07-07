@@ -13,6 +13,7 @@ import Books from './components/Books';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Usereducer from './components/Usereducer';
+import Showdata from './components/Showdata';
 
 function App() {
 
@@ -33,6 +34,8 @@ function App() {
       <Route path="/login" element={<Login />}/>
 
       <Route path="/reducer" element={<Usereducer />}/>
+
+      <Route path="/show" element={<Showdata />}/>
        
        </Routes>
 

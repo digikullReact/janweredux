@@ -26,3 +26,17 @@ export const signupAction = createAsyncThunk(
       
     }
   )
+
+
+  export const dataAction = createAsyncThunk(
+    'auth/dataAction',
+    async () => {
+
+    
+       // An async function return a promise
+        const data=await axios.get("https://dry-gorge-90450.herokuapp.com/user/data");
+        return data;
+      
+    }
+  )
+

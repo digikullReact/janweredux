@@ -1,55 +1,54 @@
 import React,{useReducer} from 'react'
 
-const initalState={
-  value:0
+import { reducer } from './reducer';
 
-}
+import { initalState } from './state';
+import { useForm } from "react-hook-form";
+
 
 
 const Usereducer = () => {
 
 
 
-const reducer=(state,action)=>{
 
-  debugger;
+// Create an input field 
+//you have to change its state using the dispatch userReducer
 
-  // reducers are something where you have to write the state management logic
-
-
-    // Write the logic to modify the stae that we declared above
-
-    switch (action){
-
-        case "INCREMENT":
-           
-            return {...state,value:state.value+1}
-
-            case "DECREMENT":
-           
-              return {...state,value:state.value-1}    
-        
-        default :
-          return state    
-
-    }
-
-}
+// you have to create another button that increments the value of state by the value input in the field
 
   const [state,dispatch] = useReducer(reducer,initalState);
 
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const onSubmit = data => console.log(data);
+
+  console.log(watch("example")); // watch input value by passing the name of it
+
 
   const increment=()=>{
-    dispatch("INCREMENT");
+    dispatch({type:"INCREMENT"});
 
   }
 
   const decrement=()=>{
-    dispatch("DECREMENT");
+    dispatch({type:"DECREMENT"});
+  }
+
+  const handleChange=(event)=>{
+    dispatch({type:"INPUT",payload:event.target.value});
+
+
+  }
+
+  const incrementByValue=()=>{
+    dispatch({type:"INCREMENTBYVALUE"});
+
   }
   return (
     <div>
      <h1>{state.value}</h1> 
+
+     <input type={"text"}  onChange={handleChange}/>
 
 <button onClick={increment}>
 Increment
@@ -60,6 +59,25 @@ Increment
 <button onClick={decrement}>
 Decrement
 </button>
+
+
+<button onClick={incrementByValue}>
+IncrementByValue
+</button>
+
+
+<form onSubmit={handleSubmit(onSubmit)}>
+      {/* register your input into the hook by invoking the "register" function */}
+      <input defaultValue="test" {...register("example")} />
+      
+      {/* include validation with required or other standard HTML validation rules */}
+      <input {...register("exampleRequired", { required: true,minLength: 20  })} />
+      {/* errors will return when field validation fails  */}
+      {errors.exampleRequired?.type=="required" && <span>This field is required</span>}
+      {errors.exampleRequired?.type=="minLength" && <span>The minlength should be 20</span>}
+      
+      <input type="submit" />
+    </form>
 
     </div>
 
